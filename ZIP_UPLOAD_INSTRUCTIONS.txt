@@ -35,25 +35,32 @@ STEP 3: Upload ZIP File
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-STEP 4: Extract ZIP
+STEP 4: Extract ZIP (Automatic Script)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 In Replit shell, run:
 
-unzip letters-app-main.zip -d .
-mv letters-app-main/* .
-mv letters-app-main/.* . 2>/dev/null || true
-rmdir letters-app-main
-rm letters-app-main.zip
+curl -O https://raw.githubusercontent.com/redinc23/letters-app/main/ZIP_IMPORT.sh
+bash ZIP_IMPORT.sh
+
+This script:
+✅ Extracts the ZIP
+✅ Moves files into project root
+✅ Cleans up ZIP
+✅ Runs DO_EVERYTHING.sh for you
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-STEP 5: Run Setup
+STEP 5: Add Secrets & Run
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-bash DO_EVERYTHING.sh
+The script above already ran `DO_EVERYTHING.sh`.
+Now open the Secrets tab (🔒) and add:
+1. `DATABASE_URL`
+2. `NEXTAUTH_URL`
+3. `NEXTAUTH_SECRET`
 
-Then add the 3 secrets it shows you. Done!
+Click **Run**. Done!
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
