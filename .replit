@@ -65,7 +65,3 @@ support = true
 transport = "localhost"
 startCommand = "npm run dev"
 
-# LSP for better code intelligence
-[languages.javascript.languageServer]
-start = "typescript-language-server --stdio"
-
