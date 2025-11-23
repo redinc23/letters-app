@@ -5,7 +5,6 @@
     
     # Package managers
     pkgs.nodePackages.npm
-    pkgs.nodePackages.yarn
     
     # TypeScript support
     pkgs.nodePackages.typescript
@@ -23,9 +22,6 @@
     # Useful utilities
     pkgs.bash
     pkgs.coreutils
-    pkgs.findutils
-    pkgs.gnused
-    pkgs.gnugrep
   ];
   
   # Environment variables available to all shells
@@ -33,4 +29,3 @@
     NODE_ENV = "production";
   };
 }
-

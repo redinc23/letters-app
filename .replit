@@ -1,15 +1,18 @@
 # ============================================
-# Letters App - Replit Configuration
+# Letters App - Replit Configuration (Modules Approach)
 # ============================================
-# This file configures how Replit runs your app
+# Modern Replit configuration using modules
 
-# Language and runtime
-language = "nodejs"
+# Modules configuration (modern approach)
+[modules]
+# Use Node.js module
+nodejs = "18"
 
-# Development command (when clicking "Run")
-run = "npm run dev"
+# Run configuration
+[run]
+command = "npm run dev"
 
-# Entry point for the application
+# Entry point
 entrypoint = "src/app/page.tsx"
 
 # Environment variables
@@ -22,19 +25,14 @@ PORT = "3000"
 # NEXTAUTH_SECRET is set via Secrets
 
 # Always On configuration (keeps app running)
-# Set to true for production deployments
 alwaysOn = true
 
 # Deployment configuration
-# This runs when you deploy or use "Always On"
 [deploy]
-# Build and start production server
 run = ["sh", "-c", "npm run build && npm start"]
-# Public directory for static files
 publicDir = ".next"
 
 # Language Server Protocol (LSP) configuration
-# Provides IntelliSense and code completion
 [languages.javascript]
 pattern = "**/*.{js,jsx,ts,tsx}"
 
@@ -55,7 +53,6 @@ testCommand = "npm test"
 requiredFiles = [".replit", "replit.nix", ".gitignore", "package.json"]
 
 # Nix package configuration
-# Specifies which system packages are available
 [nix]
 channel = "stable-22_11"
 
@@ -64,4 +61,3 @@ channel = "stable-22_11"
 support = true
 transport = "localhost"
 startCommand = "npm run dev"
-
