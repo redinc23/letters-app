@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Sidebar from "@/components/Sidebar";
 
 const mockEmails = [
   { id: 1, from: "Sarah Chen", subject: "Q4 Project Update", preview: "Here's the latest update on our Q4 initiatives...", time: "10:30 AM", unread: true, starred: true },
@@ -14,47 +15,10 @@ const mockEmails = [
 
 export default function Inbox() {
   const [selectedEmail, setSelectedEmail] = useState(mockEmails[0]);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <div className="min-h-screen flex">
-      {/* Sidebar */}
-      <aside className={`${sidebarOpen ? "w-64" : "w-20"} bg-[var(--bg-card)] border-r border-white/5 transition-all duration-300 flex flex-col`}>
-        <div className="p-5 border-b border-white/5 flex items-center justify-between">
-          {sidebarOpen && <h2 className="text-xl font-bold">Letters</h2>}
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 hover:bg-white/5 rounded-lg transition-colors">
-            {sidebarOpen ? "☰" : "→"}
-          </button>
-        </div>
-
-        <nav className="flex-1 p-4">
-          <Link href="/compose" className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-[var(--purple-primary)] to-[var(--pink-accent)] text-white hover:translate-y-[-2px] hover:shadow-lg transition-all mb-4">
-            <span className="text-lg">✉️</span>
-            {sidebarOpen && <span className="font-semibold">Compose</span>}
-          </Link>
-
-          <div className="space-y-1">
-            <Link href="/inbox" className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5">
-              <span className="text-lg">📥</span>
-              {sidebarOpen && <span>Inbox</span>}
-              {sidebarOpen && <span className="ml-auto text-xs bg-[var(--purple-primary)] px-2 py-1 rounded-full">12</span>}
-            </Link>
-            <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">⭐</span>
-              {sidebarOpen && <span>Starred</span>}
-            </Link>
-            <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">📤</span>
-              {sidebarOpen && <span>Sent</span>}
-            </Link>
-            <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">📝</span>
-              {sidebarOpen && <span>Drafts</span>}
-              {sidebarOpen && <span className="ml-auto text-xs text-[var(--text-gray)]">3</span>}
-            </Link>
-          </div>
-        </nav>
-      </aside>
+      <Sidebar currentPage="inbox" />
 
       {/* Email List */}
       <div className="w-96 bg-[var(--bg-card)] border-r border-white/5 flex flex-col">

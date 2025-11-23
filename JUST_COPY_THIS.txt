@@ -1,0 +1,46 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║          COPY THIS ENTIRE FILE TO REPLIT                      ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+STEP 1: Run this command in Replit shell:
+
+bash DO_EVERYTHING.sh
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: After it finishes, click the 🔒 Secrets tab and add these 3 secrets:
+
+Secret 1:
+Key: DATABASE_URL
+Value: file:./dev.db
+
+Secret 2:
+Key: NEXTAUTH_URL
+Value: https://your-repl-name.yourusername.replit.dev
+(Use your actual Repl URL - shown in script output)
+
+Secret 3:
+Key: NEXTAUTH_SECRET
+Value: (Copy from script output - it's shown at the end)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: Click "Run" button or type: npm run dev
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DONE! Your app is live.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OR EVEN EASIER: Give this to Replit AI Assistant:
+
+"I need to deploy my Letters app. Please:
+1. Run: bash DO_EVERYTHING.sh
+2. After it finishes, add the 3 secrets it shows to the Secrets tab
+3. Then start the app with: npm run dev
+
+The secrets will be displayed at the end of the script output."
+

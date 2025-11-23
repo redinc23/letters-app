@@ -2,21 +2,53 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import Navigation from "@/components/Navigation";
 
-export default function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const signupSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  confirmPassword: z.string(),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
+});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords don't match");
-      return;
+type SignupForm = z.infer<typeof signupSchema>;
+
+export default function Signup() {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupForm>({
+    resolver: zodResolver(signupSchema),
+  });
+
+  const onSubmit = async (data: SignupForm) => {
+    setIsLoading(true);
+    
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      toast.success("Account created successfully! Welcome to Letters.");
+      
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 500);
+    } catch (error) {
+      toast.error("Failed to create account. Please try again.");
+      setIsLoading(false);
     }
-    window.location.href = "/dashboard";
   };
 
   return (
@@ -35,19 +67,23 @@ export default function Signup() {
           </div>
 
           <div className="bg-[var(--bg-card)] rounded-[20px] p-8 border border-white/5">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-5">
                 <label className="block text-sm mb-2 text-[var(--text-gray)]">
                   Full Name
                 </label>
                 <input
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border border-white/10 focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white"
+                  {...register("name")}
+                  className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border ${
+                    errors.name ? "border-red-500" : "border-white/10"
+                  } focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white`}
                   placeholder="John Doe"
-                  required
+                  disabled={isLoading}
                 />
+                {errors.name && (
+                  <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
+                )}
               </div>
 
               <div className="mb-5">
@@ -56,12 +92,16 @@ export default function Signup() {
                 </label>
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border border-white/10 focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white"
+                  {...register("email")}
+                  className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border ${
+                    errors.email ? "border-red-500" : "border-white/10"
+                  } focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white`}
                   placeholder="you@example.com"
-                  required
+                  disabled={isLoading}
                 />
+                {errors.email && (
+                  <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+                )}
               </div>
 
               <div className="mb-5">
@@ -70,12 +110,16 @@ export default function Signup() {
                 </label>
                 <input
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border border-white/10 focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white"
+                  {...register("password")}
+                  className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border ${
+                    errors.password ? "border-red-500" : "border-white/10"
+                  } focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white`}
                   placeholder="••••••••"
-                  required
+                  disabled={isLoading}
                 />
+                {errors.password && (
+                  <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>
+                )}
               </div>
 
               <div className="mb-6">
@@ -84,19 +128,30 @@ export default function Signup() {
                 </label>
                 <input
                   type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border border-white/10 focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white"
+                  {...register("confirmPassword")}
+                  className={`w-full px-4 py-3 rounded-lg bg-[var(--bg-dark)] border ${
+                    errors.confirmPassword ? "border-red-500" : "border-white/10"
+                  } focus:border-[var(--purple-primary)] focus:outline-none transition-colors text-white`}
                   placeholder="••••••••"
-                  required
+                  disabled={isLoading}
                 />
+                {errors.confirmPassword && (
+                  <p className="text-red-400 text-xs mt-1">{errors.confirmPassword.message}</p>
+                )}
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-gradient-to-r from-[var(--purple-primary)] to-[var(--pink-accent)] text-white font-semibold text-sm hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.3)] transition-all"
+                disabled={isLoading}
+                className="w-full py-3 rounded-lg bg-gradient-to-r from-[var(--purple-primary)] to-[var(--pink-accent)] text-white font-semibold text-sm hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.3)] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Create Account
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="animate-spin">⚪</span> Creating account...
+                  </span>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 

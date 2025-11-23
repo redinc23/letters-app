@@ -34,3 +34,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## 🌐 Deploy on Replit (ZERO EFFORT)
+
+**Just copy-paste this to Replit:**
+
+```bash
+bash DO_EVERYTHING.sh
+```
+
+That's it! The script does everything automatically.
+
+**After it runs:**
+1. Add the 3 secrets it shows you to Replit Secrets tab (🔒)
+2. Click "Run" button
+3. Done!
+
+**Even easier:** Open `JUST_COPY_THIS.txt` and follow it, or give `TELL_REPLIT_AI.txt` to Replit's AI assistant.
+
+For detailed guide: [REPLIT_DEPLOYMENT.md](./REPLIT_DEPLOYMENT.md)

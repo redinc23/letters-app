@@ -32,6 +32,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# database
+prisma/dev.db
+prisma/dev.db-journal
 
 # vercel
 .vercel
@@ -39,3 +44,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+# Replit
+.replit-secrets.txt
+COPY_PASTE_TO_REPLIT.txt
+TELL_REPLIT_AI.txt
+*.bak
+/tmp/
