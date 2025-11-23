@@ -1,7 +1,7 @@
 { pkgs }: {
   deps = [
-    # Node.js runtime (LTS version)
-    pkgs.nodejs-18_x
+    # Node.js runtime (Node.js 20 - matches .replit)
+    pkgs.nodejs-20_x
     
     # Package managers
     pkgs.nodePackages.npm

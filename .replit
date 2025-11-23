@@ -5,8 +5,8 @@
 
 # Modules configuration (modern approach)
 [modules]
-# Use Node.js module
-nodejs = "18"
+# Use Node.js module (Node.js 20 for better performance)
+nodejs = "20"
 
 # Run configuration
 [run]
@@ -54,10 +54,14 @@ requiredFiles = [".replit", "replit.nix", ".gitignore", "package.json"]
 
 # Nix package configuration
 [nix]
-channel = "stable-22_11"
+channel = "stable-25_05"
 
 # Debugger configuration
 [debugger]
 support = true
 transport = "localhost"
 startCommand = "npm run dev"
+
+# Agent configuration
+[agent]
+expertMode = true
