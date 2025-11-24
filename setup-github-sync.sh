@@ -33,7 +33,6 @@ cd "$PROJECT_ROOT"
 echo -e "${BLUE}📁 Project root: ${PROJECT_ROOT}${NC}\n"
 
 # Step 3: Configure Git
-echo - Initialize Git
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${CYAN}Step 3: Configuring Git${NC}"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
@@ -51,8 +50,8 @@ fi
 # Configure git user (if not already configured)
 if [ -z "$(git config user.name)" ]; then
     echo -e "${YELLOW}Configuring git user...${NC}"
-    read -p "Enter your name (for git commits): " GIT_NAME
-    read -p "Enter your email (for git commits): " GIT_EMAIL
+    read -r -p "Enter your name (for git commits): " GIT_NAME
+    read -r -p "Enter your email (for git commits): " GIT_EMAIL
     
     git config --global user.name "$GIT_NAME"
     git config --global user.email "$GIT_EMAIL"
@@ -73,7 +72,7 @@ if [ -z "${GITHUB_TOKEN:-}" ]; then
     echo "4. Value: Your GitHub Personal Access Token"
     echo "5. Click 'Add secret'"
     echo ""
-    read -p "Have you added GITHUB_TOKEN to Secrets? (y/n): " HAS_TOKEN
+    read -r -p "Have you added GITHUB_TOKEN to Secrets? (y/n): " HAS_TOKEN
     
     if [ "$HAS_TOKEN" != "y" ]; then
         echo ""
@@ -87,7 +86,7 @@ if [ -z "${GITHUB_TOKEN:-}" ]; then
     echo -e "${YELLOW}⚠️  GITHUB_TOKEN still not found. Restart Replit or refresh secrets.${NC}"
     echo -e "${YELLOW}   You can also manually set it: export GITHUB_TOKEN=your_token${NC}"
     echo ""
-    read -p "Enter your GitHub token manually (or press Enter to skip): " MANUAL_TOKEN
+    read -r -p "Enter your GitHub token manually (or press Enter to skip): " MANUAL_TOKEN
     
     if [ -n "$MANUAL_TOKEN" ]; then
         export GITHUB_TOKEN="$MANUAL_TOKEN"
