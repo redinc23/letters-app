@@ -54,7 +54,7 @@ requiredFiles = [".replit", "replit.nix", ".gitignore", "package.json"]
 
 # Nix package configuration
 [nix]
-channel = "stable-25_05"
+channel = "stable-24_05"
 
 # Debugger configuration
 [debugger]

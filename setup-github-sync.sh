@@ -26,9 +26,9 @@ cat << "EOF"
 EOF
 echo -e "${NC}\n"
 
-# Navigate to project root
-cd letters-app-main 2>/dev/null || cd . 2>/dev/null || true
-PROJECT_ROOT=$(pwd)
+# Navigate to project root (stay in current directory if already in project)
+PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+cd "$PROJECT_ROOT"
 
 echo -e "${BLUE}📁 Project root: ${PROJECT_ROOT}${NC}\n"
 
@@ -143,8 +143,9 @@ NC='\033[0m'
 
 echo -e "${BLUE}🔄 Syncing to GitHub...${NC}"
 
-# Navigate to project root
-cd letters-app-main 2>/dev/null || cd . 2>/dev/null || true
+# Navigate to project root (stay in current directory if already in project)
+PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+cd "$PROJECT_ROOT"
 
 # Check if git is initialized
 if [ ! -d ".git" ]; then
@@ -179,7 +180,8 @@ fi
 
 # Push
 echo -e "${BLUE}🚀 Pushing to GitHub...${NC}"
-if git push origin main 2>&1; then
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if git push origin "$CURRENT_BRANCH" 2>&1; then
     echo -e "${GREEN}✅ Successfully synced to GitHub!${NC}"
     echo -e "${GREEN}   View at: https://github.com/redinc23/letters-app${NC}"
 else
